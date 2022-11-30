@@ -34,15 +34,14 @@ Module.register("Life", {
         this.world = Array.from(Array(config.horizontalCells), () => new Array(config.verticalCells));
         console.info(this.world);
         for(var horiz = 0; horiz < config.horizontalCells; horiz++){
-        for(var vert = 0; vert < config.verticalCells; vert++){
-            if(Math.random() > config.randomThreshold){
-                this.world[horiz][vert] = 0;
-            } else {
-                this.world[horiz][vert] = 1;
+            for(var vert = 0; vert < config.verticalCells; vert++){
+                if(Math.random() > config.randomThreshold){
+                    this.world[horiz][vert] = 0;
+                } else {
+                    this.world[horiz][vert] = 1;
+                }
             }
-        }
-        console.info(this.world);
-      
+	}
         this.rotateInterval = null;  // <-- sets rotation time (see below)
         this.scheduleUpdate();       // <-- When the module updates (see below)
 	      var self = this;
