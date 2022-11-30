@@ -126,7 +126,7 @@ Module.register("MMM-Life", {
 	  n = n + this.checkCell(h - 1, v - 1);
 	  n = n + this.checkCell(h,     v - 1);
 	  n = n + this.checkCell(h + 1, v - 1);
-	  console.log("MMM-Life: n = " + n);
+	  console.log("MMM-Life: n[" + h + "][" + v + "] = " + n);
 	  return n
     },
 	
