@@ -29,8 +29,8 @@ Module.register("MMM-Life", {
         Log.info("Starting module: " + this.name);
 
         requiresVersion: "2.1.0",
-        console.log("MMM-Life: horiz = " + config.horizontalCells.toString())
-        console.log("MMM-Life: vert  = " + config.verticalCells.toString())
+        console.log("MMM-Life: horiz = " + config.horizontalCells)
+        console.log("MMM-Life: vert  = " + config.verticalCells)
         this.world = Array.from(Array(config.horizontalCells), () => new Array(config.verticalCells));
         console.info(this.world);
         for(var horiz = 0; horiz < config.horizontalCells; horiz++){
