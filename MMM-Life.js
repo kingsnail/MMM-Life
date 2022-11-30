@@ -80,7 +80,7 @@ Module.register("MMM-Life", {
                 cell.classList.add("small", "bright", "staterow");
                 row.appendChild(cell);
             }
-            wrapper.appendChild(div);
+            wrapper.appendChild(row);
         } 	
         return wrapper;
 	    
