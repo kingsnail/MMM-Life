@@ -105,8 +105,46 @@ Module.register("MMM-Life", {
 	}
     },
     
+    checkCell(h, v){
+	 var v = 0;
+         if ((h > 0) && (h < this.config.horizontalCells)){
+	     if ((v > 0) && (v < this.config.verticalCells)){
+                  v = v + this.world[h][v];     
+	     }
+	 }
+	 return v;
+    },
+    countNeighbours(h, v){
+	  var n = 0;
+	  n = n + checkCell(h - 1, v + 1);
+	  n = n + checkCell(h,     v + 1);
+	  n = n + checkCell(h + 1, v + 1);
+
+	  n = n + checkCell(h - 1, v);
+	  n = n + checkCell(h + 1, v);
+	  
+	  n = n + checkCell(h - 1, v - 1);
+	  n = n + checkCell(h,     v - 1);
+	  n = n + checkCell(h + 1, v - 1);
+	   
+	  return n
+    },
+	
     processWorld: function() {
         console.log("Life: Process World");
+	for(var vs = 0; vs < this.config.verticalCells; vs++){
+             for(var hs = 0; hs < this.config.horizontalCells; hs++){
+	          if (this.world[hs][vs] == 1){
+			  if(countNeighbours(hs, vs) > 3 ){
+				  this.world[hs][vs] = 0;
+			  }
+		  } else {
+			  if(countNeighbours(hs,vs) < 2 ){
+				  this.world[hs][vs] = 1;
+			  }
+		  }
+	     }
+	}
       	this.loaded  = true;
     },
 	
