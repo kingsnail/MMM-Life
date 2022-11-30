@@ -75,9 +75,13 @@ Module.register("MMM-Life", {
             var row = document.createElement("div")
             for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
                 var cell = document.createElement("span")
-		//console.log("MMM-Life: Cell " + vert + ",  " + horiz + " = " + this.world[horiz][vert].toString());
-                cell.innerHTML = this.world[horiz][vert].toString();
-                cell.classList.add("small", "bright", "staterow");
+		if(this.world[horiz][vert] == 1){
+                    cell.innerHTML = "X";
+                    cell.classList.add("small", "bright", "cell1");
+		} else {
+                    cell.innerHTML = " ";
+                    cell.classList.add("small", "bright", "cell0");
+		}
                 row.appendChild(cell);
             }
             wrapper.appendChild(row);
