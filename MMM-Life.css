@@ -18,14 +18,18 @@
 
 .MMM-Life .cell0 {
   color: white;                /* Color the text indication white. */
+  width: 12px;
   font-weight: normal;
   text-align: left;
+  border: 1px solid blue;
 }
 
 .MMM-Life .cell1 {
   color: blue;                /* Color the text indication white. */
+  width: 12px;
   font-weight: normal;
   text-align: left;
+  border: 1px solid blue;
 }
 
 .KS-SH .state_on {
