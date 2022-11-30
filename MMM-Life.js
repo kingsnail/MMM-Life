@@ -116,16 +116,16 @@ Module.register("MMM-Life", {
     },
     countNeighbours(h, v){
 	  var n = 0;
-	  n = n + checkCell(h - 1, v + 1);
-	  n = n + checkCell(h,     v + 1);
-	  n = n + checkCell(h + 1, v + 1);
+	  n = n + this.checkCell(h - 1, v + 1);
+	  n = n + this.checkCell(h,     v + 1);
+	  n = n + this.checkCell(h + 1, v + 1);
 
-	  n = n + checkCell(h - 1, v);
-	  n = n + checkCell(h + 1, v);
+	  n = n + this.checkCell(h - 1, v);
+	  n = n + this.checkCell(h + 1, v);
 	  
-	  n = n + checkCell(h - 1, v - 1);
-	  n = n + checkCell(h,     v - 1);
-	  n = n + checkCell(h + 1, v - 1);
+	  n = n + this.checkCell(h - 1, v - 1);
+	  n = n + this.checkCell(h,     v - 1);
+	  n = n + this.checkCell(h + 1, v - 1);
 	   
 	  return n
     },
@@ -135,11 +135,11 @@ Module.register("MMM-Life", {
 	for(var vs = 0; vs < this.config.verticalCells; vs++){
              for(var hs = 0; hs < this.config.horizontalCells; hs++){
 	          if (this.world[hs][vs] == 1){
-			  if(countNeighbours(hs, vs) > 3 ){
+			  if(this.countNeighbours(hs, vs) > 3 ){
 				  this.world[hs][vs] = 0;
 			  }
 		  } else {
-			  if(countNeighbours(hs,vs) < 2 ){
+			  if(this.countNeighbours(hs,vs) < 2 ){
 				  this.world[hs][vs] = 1;
 			  }
 		  }
