@@ -29,13 +29,13 @@ Module.register("MMM-Life", {
         Log.info("Starting module: " + this.name);
 
         requiresVersion: "2.1.0",
-        console.log("MMM-Life: horiz = " + config.horizontalCells)
-        console.log("MMM-Life: vert  = " + config.verticalCells)
-        this.world = Array.from(Array(config.horizontalCells), () => new Array(config.verticalCells));
+        console.log("MMM-Life: horiz = " + this.config.horizontalCells)
+        console.log("MMM-Life: vert  = " + this.config.verticalCells)
+        this.world = Array.from(Array(this.config.horizontalCells), () => new Array(this.config.verticalCells));
         console.info(this.world);
-        for(var horiz = 0; horiz < config.horizontalCells; horiz++){
-            for(var vert = 0; vert < config.verticalCells; vert++){
-                if(Math.random() > config.randomThreshold){
+        for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
+            for(var vert = 0; vert < this.config.verticalCells; vert++){
+                if(Math.random() > this.config.randomThreshold){
                     this.world[horiz][vert] = 0;
                 } else {
                     this.world[horiz][vert] = 1;
@@ -44,7 +44,7 @@ Module.register("MMM-Life", {
 	}
         this.rotateInterval = null;  // <-- sets rotation time (see below)
         this.scheduleUpdate();       // <-- When the module updates (see below)
-	      var self = this;
+	var self = this;
     },
 	
     getDom: function() {
