@@ -110,7 +110,7 @@ Module.register("MMM-Life", {
          if ((h >= 0) && (h < this.config.horizontalCells)){
 	     if ((v >= 0) && (v < this.config.verticalCells)){
                   c = c + this.world[h][v];     
-		  console.log("MMM-Life:    cs (" + h + ", " + v + ") = " + this.world[h][v] )
+		  //console.log("MMM-Life:    cs (" + h + ", " + v + ") = " + this.world[h][v] )
 	     }
 	 }
 	 return c;
@@ -127,7 +127,7 @@ Module.register("MMM-Life", {
 	  n = n + this.checkCell(h - 1, v - 1);
 	  n = n + this.checkCell(h,     v - 1);
 	  n = n + this.checkCell(h + 1, v - 1);
-	  console.log("MMM-Life: n[" + h + "][" + v + "] = " + n);
+	  //console.log("MMM-Life: n[" + h + "][" + v + "] = " + n);
 	  return n
     },
 	
@@ -136,11 +136,11 @@ Module.register("MMM-Life", {
 	for(var vs = 0; vs < this.config.verticalCells; vs++){
              for(var hs = 0; hs < this.config.horizontalCells; hs++){
 	          if (this.world[hs][vs] == 1){
-			  if(this.countNeighbours(hs, vs) > 3 ){
+			  if((this.countNeighbours(hs, vs) < 2) || (this.countNeighbours(hs, vs) > 3)){
 				  this.world[hs][vs] = 0;
 			  }
 		  } else {
-			  if(this.countNeighbours(hs,vs) < 2 ){
+			  if(this.countNeighbours(hs,vs) == 3 ){
 				  this.world[hs][vs] = 1;
 			  }
 		  }
