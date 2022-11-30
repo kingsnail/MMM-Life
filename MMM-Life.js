@@ -22,7 +22,7 @@ Module.register("Life", {
     },
 
     getStyles: function() {
-        return ["Life.css"];
+        return ["MMM-Life.css"];
     },
 
     start: function() {
@@ -106,30 +106,17 @@ Module.register("Life", {
 	
 // this tells module when to update
     scheduleUpdate: function() { 
-	//console.log("KS-SH scheduleUpdate called.");
+	console.log("MMM-Life scheduleUpdate called.");
         setInterval(() => {
-            this.getDevices();
+            this.processWorld();
         }, this.config.updateInterval);
-        this.getDevices(this.config.initialLoadDelay);
+        this.processWorld();
     },
 	
-    getDevices: function(){
-        console.log("KS-SH: getDevices called...");
-        this.sendSocketNotification('GET_DEVICES', this.url);
-    },
-
-    processSetResponse: function(payload){
-        console.log("SET_DEVICE_RESPONSE: " + payload);
-    },
-
-	// this gets data from node_helper
+// this gets data from node_helper
     socketNotificationReceived: function(notification, payload) { 
         if (notification === "DEVICES_RESULT") {
-            this.processDevices(payload);
             this.updateDom(this.config.animationSpeed);
-        }
-        if (notification === "SET_DEVICE_RESPONSE") {
-            this.processSetResponse(payload);
         }
         this.updateDom(this.config.initialLoadDelay);
     },
