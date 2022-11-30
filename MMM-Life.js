@@ -76,8 +76,8 @@ Module.register("MMM-Life", {
             for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
                 var cell = document.createElement("span")
 		console.log("MMM-Life: Cell " + vert + ",  " + horiz + " = " + this.world[horiz][vert].toString());
-                span.innerHTML = this.world[horiz][vert].toString();
-                span.classList.add("small", "bright", "staterow");
+                cell.innerHTML = this.world[horiz][vert].toString();
+                cell.classList.add("small", "bright", "staterow");
                 row.appendChild(cell);
             }
             wrapper.appendChild(div);
