@@ -106,14 +106,14 @@ Module.register("MMM-Life", {
     },
     
     checkCell(h, v){
-	 var v = 0;
-         if ((h > 0) && (h < this.config.horizontalCells)){
-	     if ((v > 0) && (v < this.config.verticalCells)){
-                  v = v + this.world[h][v];     
+	 var c = 0;
+         if ((h >= 0) && (h < this.config.horizontalCells)){
+	     if ((v >= 0) && (v < this.config.verticalCells)){
+                  c = c + this.world[h][v];     
 		  console.log("MMM-Life:    cs (" + h + ", " + v + ") = " + this.world[h][v] )
 	     }
 	 }
-	 return v;
+	 return c;
     },
     countNeighbours(h, v){
 	  var n = 0;
