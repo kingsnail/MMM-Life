@@ -132,7 +132,7 @@ Module.register("MMM-Life", {
     },
 	
     processWorld: function() {
-        console.log("Life: Process World");
+        //console.log("Life: Process World");
 	for(var vs = 0; vs < this.config.verticalCells; vs++){
              for(var hs = 0; hs < this.config.horizontalCells; hs++){
 	          if (this.world[hs][vs] == 1){
@@ -151,7 +151,7 @@ Module.register("MMM-Life", {
 	
 // this tells module when to update
     scheduleUpdate: function() { 
-	console.log("MMM-Life scheduleUpdate called.");
+	//console.log("MMM-Life scheduleUpdate called.");
         setInterval(() => {
             this.processWorld();
         }, this.config.updateInterval);
