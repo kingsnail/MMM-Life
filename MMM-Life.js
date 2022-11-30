@@ -71,9 +71,9 @@ Module.register("MMM-Life", {
 
 		// Rotating the data
         var grid = document.createElement("div");
-        for(var vert = 0; vert < config.verticalCells; vert++){
+        for(var vert = 0; vert < this.config.verticalCells; vert++){
             var row = document.createElement("div")
-            for(var horiz = 0; horiz < config.horizontalCells; horiz++){
+            for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
                 var cell = document.createElement("span")
 		console.log("MMM-Life: Cell " + vert + ",  " + horiz + " = " + this.world[horiz][vert].toString());
                 span.innerHTML = this.world[horiz][vert].toString();
