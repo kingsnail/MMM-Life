@@ -4,17 +4,23 @@
  * Pick your color, copy and paste the HEX number. Example - #62FF00 = bright green.
  */
 
-.KS-SH .header{
+.MMM-Life .header{
   color: green;               /* Header color. Default is white. */
   text-align: left;           /* Align header text. (left, center, right) */
 }
 
-.KS-SH .staterow {
+.MMM-Life .staterow {
   text-align: left;
 }
 
-.KS-SH .state {
+.MMM-Life .cell0 {
   color: white;                /* Color the text indication white. */
+  font-weight: normal;
+  text-align: left;
+}
+
+.MMM-Life .cell1 {
+  color: blue;                /* Color the text indication white. */
   font-weight: normal;
   text-align: left;
 }
