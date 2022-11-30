@@ -4,7 +4,7 @@
  * By Mark Pearce
  *
  */
-Module.register("Life", {
+Module.register("MMM-Life", {
 
     // Module config defaults.
     defaults: {
