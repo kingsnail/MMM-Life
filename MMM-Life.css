@@ -9,6 +9,9 @@
   text-align: left;           /* Align header text. (left, center, right) */
 }
 
+.MMM-Life .liferow {
+  text-align: left;
+}
 .MMM-Life .staterow {
   text-align: left;
 }
