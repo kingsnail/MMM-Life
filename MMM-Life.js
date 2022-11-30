@@ -70,19 +70,19 @@ Module.register("Life", {
         }
 
 		// Rotating the data
-    var grid = document.createElement("div");
-    for(var vert = 0; vert < config.verticalCells; vert++){
-        var row = document.createElement("div")
-        for(var horiz = 0; horiz < config.horizontalCells; horiz++){
-            var cell = document.createElement("span")
-            span.innerHTML = this.world[horiz][vert].toString();
-         	  span.classList.add("small", "bright", "staterow");
-            row.appendChild(cell);
-        }
-        wrapper.appendChild(div);
-	 	
+        var grid = document.createElement("div");
+        for(var vert = 0; vert < config.verticalCells; vert++){
+            var row = document.createElement("div")
+            for(var horiz = 0; horiz < config.horizontalCells; horiz++){
+                var cell = document.createElement("span")
+                span.innerHTML = this.world[horiz][vert].toString();
+                span.classList.add("small", "bright", "staterow");
+                row.appendChild(cell);
+            }
+            wrapper.appendChild(div);
+        } 	
         return wrapper;
-		
+	    
     }, // <-- closes the getDom function from above
 
 	// this processes your data
