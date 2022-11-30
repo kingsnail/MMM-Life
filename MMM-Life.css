@@ -18,7 +18,7 @@
 
 .MMM-Life .cell0 {
   color: white;                /* Color the text indication white. */
-  width: 20px;
+  width: 30px;
   font-weight: normal;
   text-align: left;
   border: 1px solid blue;
@@ -26,7 +26,7 @@
 
 .MMM-Life .cell1 {
   color: green;                /* Color the text indication white. */
-  width: 20px;
+  width: 30px;
   font-weight: normal;
   text-align: left;
   border: 1px solid blue;
