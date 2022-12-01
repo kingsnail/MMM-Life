@@ -159,6 +159,7 @@ Module.register("MMM-Life", {
 			this.world[hh][vv] = this.newworld[hh][vv];
 		}
 	}
+	this.updateDom(this.config.animationSpeed);
       	this.loaded  = true;
     },
 	
