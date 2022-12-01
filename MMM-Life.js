@@ -78,7 +78,7 @@ Module.register("MMM-Life", {
             for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
                 var cell = document.createElement("span")
 		if(this.world[horiz][vert] == 1){
-                    cell.innerHTML = "o";
+                    cell.innerHTML = "nbsp;";
                     cell.classList.add("xsmall", "bright", "cell1");
 		} else {
                     cell.innerHTML = "&nbsp;";
