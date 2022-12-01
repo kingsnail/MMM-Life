@@ -78,7 +78,7 @@ Module.register("MMM-Life", {
             for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
                 var cell = document.createElement("span")
 		if(this.world[horiz][vert] == 1){
-                    cell.innerHTML = "nbsp;";
+                    cell.innerHTML = "&nbsp;";
                     cell.classList.add("xsmall", "bright", "cell1");
 		} else {
                     cell.innerHTML = "&nbsp;";
@@ -139,14 +139,14 @@ Module.register("MMM-Life", {
 	          if (this.world[hs][vs] == 1){
 			  if((this.countNeighbours(hs, vs) < 2) || (this.countNeighbours(hs, vs) > 3)){
 				  this.newworld[hs][vs] = 0;
-				  console.log("MMM-Life: (" + hs + ", " + vs + ") DIES");
+				  //console.log("MMM-Life: (" + hs + ", " + vs + ") DIES");
 			  } else {
 				  this.newworld[hs][vs] = 1;
 			  }
 		  } else {
 			  if(this.countNeighbours(hs,vs) == 3 ){
 				  this.newworld[hs][vs] = 1;
-				  console.log("MMM-Life: (" + hs + ", " + vs + ") BORN");
+				  //console.log("MMM-Life: (" + hs + ", " + vs + ") BORN");
 			  } else {
 				  this.newworld[hs][vs] = 0;
 			  }
@@ -177,6 +177,6 @@ Module.register("MMM-Life", {
         if (notification === "DEVICES_RESULT") {
             this.updateDom(this.config.animationSpeed);
         }
-        this.updateDom(this.config.initialLoadDelay);
+        this.updateDom(this.config.animationSpeed);
     },
 });
