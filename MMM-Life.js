@@ -14,6 +14,8 @@ Module.register("MMM-Life", {
         horizontalCells: 20,
         verticalCells:   20,
         randomThreshold: 0.10,
+	useWraparound: true,
+	refreshGeneration: 200,
         rotateInterval: 300 * 1000,
         animationSpeed: 10, // fade in and out speed
         initialLoadDelay: 4250,
@@ -33,18 +35,10 @@ Module.register("MMM-Life", {
         console.log("MMM-Life: vert  = " + this.config.verticalCells)
         this.newworld = Array.from(Array(this.config.horizontalCells), () => new Array(this.config.verticalCells));
         this.world = Array.from(Array(this.config.horizontalCells), () => new Array(this.config.verticalCells));
-        console.info(this.world);
-        for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
-            for(var vert = 0; vert < this.config.verticalCells; vert++){
-                if(Math.random() > this.config.randomThreshold){
-                    this.world[horiz][vert] = 0;
-                } else {
-                    this.world[horiz][vert] = 1;
-                }
-            }
-	}
+        this.randomizeWorld();
         this.rotateInterval = null;  // <-- sets rotation time (see below)
         this.scheduleUpdate();       // <-- When the module updates (see below)
+	this.genCount = 0;
 	var self = this;
     },
 	
@@ -106,17 +100,33 @@ Module.register("MMM-Life", {
 	}
     },
     
-    checkCell(h, v){
+    randomizeWorld(){
+	for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
+            for(var vert = 0; vert < this.config.verticalCells; vert++){
+                if(Math.random() > this.config.randomThreshold){
+                    this.world[horiz][vert] = 0;
+                } else {
+                    this.world[horiz][vert] = 1;
+                }
+            }
+	}
+    },
+	
+    checkCell: function(h, v){
 	 var c = 0;
-         if ((h >= 0) && (h < this.config.horizontalCells)){
-	     if ((v >= 0) && (v < this.config.verticalCells)){
-                  c = c + this.world[h][v];     
-		  //console.log("MMM-Life:    cs (" + h + ", " + v + ") = " + this.world[h][v] )
+	 if (this.config.useWraparound){
+              c = c + this.world[h % this.config.horizontalCells][v % this.config.verticalCells];     
+	 } else {	
+             if ((h >= 0) && (h < this.config.horizontalCells)){
+    	         if ((v >= 0) && (v < this.config.verticalCells)){
+                     c = c + this.world[h][v];     
+		     //console.log("MMM-Life:    cs (" + h + ", " + v + ") = " + this.world[h][v] )
+    	         }
 	     }
 	 }
 	 return c;
     },
-    countNeighbours(h, v){
+    countNeighbours: function(h, v){
 	  var n = 0;
 	  n = n + this.checkCell(h - 1, v + 1);
 	  n = n + this.checkCell(h,     v + 1);
@@ -159,6 +169,13 @@ Module.register("MMM-Life", {
 			this.world[hh][vv] = this.newworld[hh][vv];
 		}
 	}
+	// Increment generation count and re-randomize if neccessary
+	this.genCount++;
+	if(this.genCount > this.config.refreshGeneration ){
+	     this.genCount = 0;
+             this.randomizeWorld();
+	}
+	    
 	this.updateDom(this.config.animationSpeed);
       	this.loaded  = true;
     },
