@@ -31,6 +31,7 @@ Module.register("MMM-Life", {
         requiresVersion: "2.1.0",
         console.log("MMM-Life: horiz = " + this.config.horizontalCells)
         console.log("MMM-Life: vert  = " + this.config.verticalCells)
+        this.newworld = Array.from(Array(this.config.horizontalCells), () => new Array(this.config.verticalCells));
         this.world = Array.from(Array(this.config.horizontalCells), () => new Array(this.config.verticalCells));
         console.info(this.world);
         for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
@@ -49,12 +50,12 @@ Module.register("MMM-Life", {
 	
     getDom: function() {
 		
-		// creating the wrapper
+	// creating the wrapper
         var wrapper = document.createElement("div");
         wrapper.className = "wrapper";
         wrapper.style.maxWidth = this.config.maxWidth;
 
-		// The loading sequence
+	// The loading sequence
         if (!this.loaded) {
             wrapper.innerHTML = "Loading Cells . . !";
             wrapper.classList.add("bright", "light", "small");
@@ -137,14 +138,26 @@ Module.register("MMM-Life", {
              for(var hs = 0; hs < this.config.horizontalCells; hs++){
 	          if (this.world[hs][vs] == 1){
 			  if((this.countNeighbours(hs, vs) < 2) || (this.countNeighbours(hs, vs) > 3)){
-				  this.world[hs][vs] = 0;
+				  this.newworld[hs][vs] = 0;
+				  console.log("MMM-Life: (" + hs + ", " + vs + ") DIES");
+			  } else {
+				  this.newworld[hs][vs] = 1;
 			  }
 		  } else {
 			  if(this.countNeighbours(hs,vs) == 3 ){
-				  this.world[hs][vs] = 1;
+				  this.newworld[hs][vs] = 1;
+				  console.log("MMM-Life: (" + hs + ", " + vs + ") BORN");
+			  } else {
+				  this.newworld[hs][vs] = 0;
 			  }
 		  }
 	     }
+	}
+	// Copy newworld into oldworld
+	for(var vv = 0; vv < this.config.verticalCells; vv++){
+		for(var hh = 0; hh < this.config.horizontalCells; hh++){
+			this.world[hh][vv] = this.newworld[hh][vv];
+		}
 	}
       	this.loaded  = true;
     },
