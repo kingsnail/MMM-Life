@@ -22,7 +22,7 @@
   width: 30px;
   font-weight: normal;
   text-align: left;
-  border: 1px solid blue;
+  border: 0px solid black;
 }
 
 .MMM-Life .cell1 {
@@ -30,7 +30,7 @@
   width: 30px;
   font-weight: normal;
   text-align: left;
-  border: 1px solid blue;
+  border: 0px solid black;
 }
 
 .KS-SH .state_on {
