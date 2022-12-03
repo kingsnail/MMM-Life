@@ -170,7 +170,10 @@ Module.register("MMM-Life", {
 			this.world[hh][vv] = this.newworld[hh][vv];
 		}
 	}
+	
 	// Increment generation count and re-randomize if neccessary
+	// If refreshGeneration is 0 (or negative) then the generation never expires.
+	
 	if(this.config.refreshGeneration > 0){
 	this.genCount++;
 	    if(this.genCount > this.config.refreshGeneration ){
@@ -178,25 +181,18 @@ Module.register("MMM-Life", {
                 this.randomizeWorld();
    	    }
 	}
-	    
+	
+	// Re-draw the grid
 	this.updateDom(this.config.animationSpeed);
-      	this.loaded  = true;
+
+	this.loaded  = true;
     },
 	
-// this tells module when to update
+    // this tells module when to update
+    
     scheduleUpdate: function() { 
-	//console.log("MMM-Life scheduleUpdate called.");
-        setInterval(() => {
-            this.processWorld();
-        }, this.config.updateInterval);
+        setInterval(() => { this.processWorld(); }, this.config.updateInterval);
         this.processWorld();
     },
 	
-// this gets data from node_helper
-    socketNotificationReceived: function(notification, payload) { 
-        if (notification === "DEVICES_RESULT") {
-            this.updateDom(this.config.animationSpeed);
-        }
-        this.updateDom(this.config.animationSpeed);
-    },
 });
