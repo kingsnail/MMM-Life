@@ -85,20 +85,6 @@ Module.register("MMM-Life", {
         return wrapper;
 	    
     }, // <-- closes the getDom function from above
-
-	// this processes your data
-    setDevice: function(d, s) { 
-	if ( s === "on" ) {
-             console.log("KS-SH: setDevice(" + d + ", " + s + ") Turn Off");
-             this.sendSocketNotification('SET_DEVICE_OFF', d);
-	     this.getDevices();
-
-	} else {
-             console.log("KS-SH: setDevice(" + d + ", " + s + ") Turn On");
-             this.sendSocketNotification('SET_DEVICE_ON', d);
-	     this.getDevices();
-	}
-    },
     
     randomizeWorld(){
 	for(var horiz = 0; horiz < this.config.horizontalCells; horiz++){
@@ -115,10 +101,11 @@ Module.register("MMM-Life", {
     checkCell: function(h, v){
 	 var c = 0;
 	 if (this.config.useWraparound){
-	      console.log("MMM-Life: Wraparound");
-              console.log("MMM-Life: h = " + h + ", v = " + v);
               var modh = h;
 	      var modv = v;
+		 
+	      // Handle wraparound for negative values on the assumption 
+	      // that the smallest value will be -1.
               if(h < 0) {
 		      modh = h + this.config.horizontalCells;
 	      } 
@@ -127,7 +114,6 @@ Module.register("MMM-Life", {
 	      }
 	      modh = modh % this.config.horizontalCells;
 	      modv = modv % this.config.verticalCells;
-              console.log("MMM-Life: modh = " + modh + ", modv = " + modv);
               c = c + this.world[modh][modv];
 	 } else {	
              if ((h >= 0) && (h < this.config.horizontalCells)){
@@ -156,20 +142,17 @@ Module.register("MMM-Life", {
     },
 	
     processWorld: function() {
-        //console.log("Life: Process World");
 	for(var vs = 0; vs < this.config.verticalCells; vs++){
              for(var hs = 0; hs < this.config.horizontalCells; hs++){
 	          if (this.world[hs][vs] == 1){
 			  if((this.countNeighbours(hs, vs) < 2) || (this.countNeighbours(hs, vs) > 3)){
 				  this.newworld[hs][vs] = 0;
-				  //console.log("MMM-Life: (" + hs + ", " + vs + ") DIES");
 			  } else {
 				  this.newworld[hs][vs] = 1;
 			  }
 		  } else {
 			  if(this.countNeighbours(hs,vs) == 3 ){
 				  this.newworld[hs][vs] = 1;
-				  //console.log("MMM-Life: (" + hs + ", " + vs + ") BORN");
 			  } else {
 				  this.newworld[hs][vs] = 0;
 			  }
@@ -185,7 +168,6 @@ Module.register("MMM-Life", {
 	// Increment generation count and re-randomize if neccessary
 	this.genCount++;
 	if(this.genCount > this.config.refreshGeneration ){
- 	     console.log("MMM-Life: Start new generation.");
 	     this.genCount = 0;
              this.randomizeWorld();
 	}
