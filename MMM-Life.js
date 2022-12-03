@@ -16,6 +16,7 @@ Module.register("MMM-Life", {
         randomThreshold: 0.10,
 	useWraparound: true,
 	refreshGeneration: 200,
+	showGeneration: true,
         rotateInterval: 300 * 1000,
         animationSpeed: 10, // fade in and out speed
         initialLoadDelay: 4250,
@@ -60,7 +61,11 @@ Module.register("MMM-Life", {
         if (this.config.useHeader != false) {
             var header = document.createElement("header");
             header.classList.add("xsmall", "bright", "light", "header");
-            header.innerHTML = this.config.header;
+	    if (){
+                header.innerHTML = this.config.header + " Gen: " + this.genCount.toString();
+	    } else {
+                header.innerHTML = this.config.header;
+	    }
             wrapper.appendChild(header);
         }
 
