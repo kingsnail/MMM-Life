@@ -171,10 +171,12 @@ Module.register("MMM-Life", {
 		}
 	}
 	// Increment generation count and re-randomize if neccessary
+	if(this.config.refreshGeneration > 0){
 	this.genCount++;
-	if(this.genCount > this.config.refreshGeneration ){
-	     this.genCount = 0;
-             this.randomizeWorld();
+	    if(this.genCount > this.config.refreshGeneration ){
+	        this.genCount = 0;
+                this.randomizeWorld();
+   	    }
 	}
 	    
 	this.updateDom(this.config.animationSpeed);
