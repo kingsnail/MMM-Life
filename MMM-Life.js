@@ -116,11 +116,19 @@ Module.register("MMM-Life", {
 	 var c = 0;
 	 if (this.config.useWraparound){
 	      console.log("MMM-Life: Wraparound");
-              console.log("h = " + h + ", v = " + v);
-              var modh = h % this.config.horizontalCells;
-	      var modv = v % this.config.verticalCells;
+              console.log("MMM-Life: h = " + h + ", v = " + v);
+              var modh = h;
+	      var modv = v;
+              if(h < 0) {
+		      modh = h + this.config.horizontalCells;
+	      } 
+	      if (v < 0) {
+		      modv = v + this.config.verticalCells;
+	      }
+	      modh = modh % this.config.horizontalCells;
+	      modv = modv % this.config.verticalCells;
               console.log("MMM-Life: modh = " + modh + ", modv = " + modv);
-              c = c + this.world[h % this.config.horizontalCells][v % this.config.verticalCells];
+              c = c + this.world[modh][modv];
 	 } else {	
              if ((h >= 0) && (h < this.config.horizontalCells)){
     	         if ((v >= 0) && (v < this.config.verticalCells)){
