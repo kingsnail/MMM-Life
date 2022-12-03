@@ -119,7 +119,7 @@ Module.register("MMM-Life", {
               console.log("h = " + h + ", v = " + v);
               var modh = h % this.config.horizontalCells;
 	      var modv = v % this.config.verticalCells;
-              console.log("modh = " + modh + ", modv = " + modv);
+              console.log("MMM-Life: modh = " + modh + ", modv = " + modv);
               c = c + this.world[h % this.config.horizontalCells][v % this.config.verticalCells];
 	 } else {	
              if ((h >= 0) && (h < this.config.horizontalCells)){
