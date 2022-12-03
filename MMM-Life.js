@@ -115,7 +115,8 @@ Module.register("MMM-Life", {
     checkCell: function(h, v){
 	 var c = 0;
 	 if (this.config.useWraparound){
-              c = c + this.world[h % this.config.horizontalCells][v % this.config.verticalCells];     
+              c = c + this.world[h % this.config.horizontalCells][v % this.config.verticalCells];
+	      console.log("MMM-Life: Wraparound");
 	 } else {	
              if ((h >= 0) && (h < this.config.horizontalCells)){
     	         if ((v >= 0) && (v < this.config.verticalCells)){
@@ -172,6 +173,7 @@ Module.register("MMM-Life", {
 	// Increment generation count and re-randomize if neccessary
 	this.genCount++;
 	if(this.genCount > this.config.refreshGeneration ){
+ 	     console.log("MMM-Life: Start new generation.");
 	     this.genCount = 0;
              this.randomizeWorld();
 	}
