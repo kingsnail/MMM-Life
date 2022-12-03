@@ -62,7 +62,7 @@ Module.register("MMM-Life", {
             var header = document.createElement("header");
             header.classList.add("xsmall", "bright", "light", "header");
 	    if (this.config.showGeneration){
-                header.innerHTML = this.config.header + " Gen: " + this.genCount.toString();
+                header.innerHTML = this.config.header + " - Gen: " + this.genCount.toString() + "/" + this.config.refreshGeneration.toString();
 	    } else {
                 header.innerHTML = this.config.header;
 	    }
