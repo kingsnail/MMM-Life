@@ -61,7 +61,7 @@ Module.register("MMM-Life", {
         if (this.config.useHeader != false) {
             var header = document.createElement("header");
             header.classList.add("xsmall", "bright", "light", "header");
-	    if (){
+	    if (this.config.showGeneration){
                 header.innerHTML = this.config.header + " Gen: " + this.genCount.toString();
 	    } else {
                 header.innerHTML = this.config.header;
