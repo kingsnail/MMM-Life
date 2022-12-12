@@ -9,6 +9,10 @@
   text-align: left;           /* Align header text. (left, center, right) */
 }
 
+.MMM-Life .lifegrid{
+  text-align: left;
+  line-height: normal;
+}
 .MMM-Life .liferow {
   text-align: left;
   line-height: 15px;
