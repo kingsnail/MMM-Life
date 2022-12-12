@@ -71,6 +71,7 @@ Module.register("MMM-Life", {
 
 		// Rotating the data
         var grid = document.createElement("div");
+	grid.classList.add("lifegrid");
         for(var vert = 0; vert < this.config.verticalCells; vert++){
             var row = document.createElement("div")
 	    row.classList.add("liferow");
